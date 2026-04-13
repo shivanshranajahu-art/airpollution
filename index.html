@@ -1,10 +1,980 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NO₂ Air Pollution Analysis | India</title>
+  <style>
+    :root {
+      --blue-dark: #0d1b6e;
+      --blue-mid: #1a3aaa;
+      --blue-light: #3f6fd4;
+      --accent: #00c6ff;
+      --accent2: #f9a825;
+      --bg: #f4f6fb;
+      --card: #ffffff;
+      --text: #1a1a2e;
+      --muted: #5a6a85;
+      --red: #e53935;
+      --green: #43a047;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #0d1b6e 0%, #1a3aaa 50%, #0d47a1 100%);
+      color: white;
+      padding: 70px 20px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(0,198,255,0.12) 0%, transparent 70%);
+      top: -100px; left: -100px;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(249,168,37,0.1) 0%, transparent 70%);
+      bottom: -100px; right: -100px;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(0,198,255,0.2);
+      border: 1px solid rgba(0,198,255,0.5);
+      color: #00c6ff;
+      padding: 5px 18px;
+      border-radius: 20px;
+      font-size: 0.82em;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .hero h1 {
+      font-size: 2.6em;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero h1 span { color: #00c6ff; }
+    .hero p {
+      font-size: 1.05em;
+      opacity: 0.85;
+      max-width: 620px;
+      margin: 0 auto 24px;
+      line-height: 1.7;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-pills {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      position: relative;
+      z-index: 1;
+    }
+    .pill {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: white;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.85em;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: #0d1b6e;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2px;
+      padding: 8px 16px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+    }
+    nav a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-size: 0.88em;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    nav a:hover {
+      background: rgba(255,255,255,0.12);
+      color: #00c6ff;
+    }
+
+    /* ── WRAPPER ── */
+    .wrapper {
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ── SECTION TITLES ── */
+    .section { padding: 60px 0; }
+    .section-title {
+      font-size: 1.75em;
+      font-weight: 800;
+      color: var(--blue-dark);
+      margin-bottom: 8px;
+    }
+    .section-title span { color: var(--blue-light); }
+    .section-sub {
+      color: var(--muted);
+      font-size: 0.95em;
+      margin-bottom: 36px;
+    }
+    .divider {
+      width: 60px; height: 4px;
+      background: linear-gradient(90deg, #00c6ff, #1a3aaa);
+      border-radius: 4px;
+      margin-bottom: 12px;
+    }
+
+    /* ── STAT CARDS ── */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .stat-card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 24px 16px;
+      text-align: center;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+      border-bottom: 4px solid var(--blue-light);
+      transition: transform 0.2s;
+    }
+    .stat-card:hover { transform: translateY(-4px); }
+    .stat-card .num {
+      font-size: 2.2em;
+      font-weight: 800;
+      color: var(--blue-dark);
+    }
+    .stat-card .lbl {
+      font-size: 0.82em;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* ── ABOUT CARD ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    @media(max-width:700px){ .about-grid { grid-template-columns: 1fr; } }
+    .info-card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 26px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+      line-height: 1.8;
+      color: var(--muted);
+      font-size: 0.95em;
+    }
+    .info-card h3 {
+      color: var(--blue-dark);
+      font-size: 1.05em;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ── TOOLS ── */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 16px;
+    }
+    .tool-card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 22px 16px;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      transition: all 0.2s;
+      border-top: 3px solid transparent;
+    }
+    .tool-card:hover {
+      transform: translateY(-4px);
+      border-top-color: var(--accent);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    }
+    .tool-icon {
+      font-size: 2.2em;
+      margin-bottom: 10px;
+    }
+    .tool-card h4 {
+      color: var(--blue-dark);
+      font-size: 0.95em;
+      margin-bottom: 4px;
+    }
+    .tool-card p {
+      color: var(--muted);
+      font-size: 0.82em;
+    }
+
+    /* ── MAP ── */
+    .map-box {
+      background: var(--card);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+    }
+    .map-header {
+      background: linear-gradient(90deg, #0d1b6e, #1a3aaa);
+      color: white;
+      padding: 14px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .map-header h3 { font-size: 1em; }
+    .map-header .live-badge {
+      background: #43a047;
+      color: white;
+      padding: 3px 12px;
+      border-radius: 12px;
+      font-size: 0.78em;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .map-header .live-badge::before {
+      content: '';
+      width: 7px; height: 7px;
+      background: white;
+      border-radius: 50%;
+      animation: blink 1.2s infinite;
+    }
+    @keyframes blink {
+      0%,100%{opacity:1} 50%{opacity:0.2}
+    }
+    .map-box iframe {
+      width: 100%;
+      height: 530px;
+      border: none;
+      display: block;
+    }
+    .map-footer {
+      padding: 14px 22px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      border-top: 1px solid #f0f0f0;
+    }
+    .map-footer .lbl { font-size: 0.82em; color: var(--muted); }
+    .legend-bar {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.8em;
+      color: var(--muted);
+    }
+    .legend-dot {
+      width: 14px; height: 14px;
+      border-radius: 3px;
+    }
+
+    /* ── GRAPHS ── */
+    .graphs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+      gap: 20px;
+    }
+    @media(max-width:600px){ .graphs-grid { grid-template-columns: 1fr; } }
+    .graph-card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+      transition: transform 0.2s;
+    }
+    .graph-card:hover { transform: translateY(-3px); }
+    .graph-card img {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid #eee;
+    }
+    .graph-caption {
+      margin-top: 10px;
+      font-size: 0.85em;
+      color: var(--muted);
+      text-align: center;
+      font-style: italic;
+    }
+
+    /* ── FINDINGS ── */
+    .findings-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 16px;
+    }
+    .finding-card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 20px 22px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      transition: transform 0.2s;
+    }
+    .finding-card:hover { transform: translateY(-3px); }
+    .finding-icon {
+      font-size: 1.8em;
+      min-width: 36px;
+    }
+    .finding-card h4 {
+      color: var(--blue-dark);
+      font-size: 0.95em;
+      margin-bottom: 5px;
+    }
+    .finding-card p {
+      color: var(--muted);
+      font-size: 0.87em;
+      line-height: 1.6;
+    }
+
+    /* ── VIVA ── */
+    .viva-list { display: flex; flex-direction: column; gap: 10px; }
+    .viva-card {
+      background: var(--card);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+    .viva-q {
+      padding: 16px 20px;
+      background: #f0f4ff;
+      color: var(--blue-dark);
+      font-weight: 700;
+      font-size: 0.93em;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      transition: background 0.2s;
+    }
+    .viva-q:hover { background: #e3eaff; }
+    .viva-q .arrow {
+      font-size: 0.8em;
+      transition: transform 0.3s;
+      min-width: 16px;
+    }
+    .viva-q.open .arrow { transform: rotate(180deg); }
+    .viva-a {
+      padding: 0 20px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.2s;
+      color: var(--muted);
+      font-size: 0.9em;
+      line-height: 1.8;
+      border-top: 0 solid #eee;
+    }
+    .viva-a.open {
+      max-height: 300px;
+      padding: 14px 20px;
+      border-top: 1px solid #eee;
+    }
+
+    /* ── METHODOLOGY ── */
+    .method-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .method-step {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 22px 18px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      text-align: center;
+      position: relative;
+    }
+    .step-num {
+      width: 36px; height: 36px;
+      background: linear-gradient(135deg, #0d1b6e, #1a3aaa);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.9em;
+      margin: 0 auto 12px;
+    }
+    .method-step h4 {
+      color: var(--blue-dark);
+      font-size: 0.9em;
+      margin-bottom: 6px;
+    }
+    .method-step p {
+      color: var(--muted);
+      font-size: 0.82em;
+      line-height: 1.6;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0d1b6e;
+      color: rgba(255,255,255,0.75);
+      text-align: center;
+      padding: 40px 20px;
+    }
+    footer h3 {
+      color: white;
+      font-size: 1.1em;
+      margin-bottom: 10px;
+    }
+    footer p { font-size: 0.85em; margin: 4px 0; }
+    .footer-pills {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 16px 0;
+    }
+    .footer-pill {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.8);
+      padding: 4px 14px;
+      border-radius: 12px;
+      font-size: 0.8em;
+    }
+
+    /* ── SCROLL TOP ── */
+    #scrollTop {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--blue-dark);
+      color: white;
+      border: none;
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      font-size: 1.2em;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+      display: none;
+      z-index: 999;
+      transition: background 0.2s;
+    }
+    #scrollTop:hover { background: var(--blue-light); }
+
+    /* ── SECTION BG ALT ── */
+    .bg-alt { background: #eef2fb; }
+  </style>
 </head>
 <body>
-$END$
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">🛰️ Satellite Remote Sensing Project</div>
+  <h1>Air Pollution Analysis<br/><span>Using NO₂ Satellite Data</span></h1>
+  <p>Spatio-temporal study of Nitrogen Dioxide concentration over India
+     using Sentinel-5P satellite data processed on Google Earth Engine.</p>
+  <div class="hero-pills">
+    <span class="pill">📡 Sentinel-5P</span>
+    <span class="pill">🌍 Google Earth Engine</span>
+    <span class="pill">🐍 Python</span>
+    <span class="pill">📅 2023 – 2024</span>
+    <span class="pill">🇮🇳 India</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#overview">Overview</a>
+  <a href="#tools">Tools</a>
+  <a href="#methodology">Methodology</a>
+  <a href="#map">Live Map</a>
+  <a href="#graphs">Graphs</a>
+  <a href="#findings">Findings</a>
+  <a href="#viva">Viva Q&A</a>
+</nav>
+
+<!-- OVERVIEW -->
+<div class="section" id="overview">
+  <div class="wrapper">
+    <div class="divider"></div>
+    <div class="section-title">Project <span>Overview</span></div>
+    <div class="section-sub">Understanding NO₂ pollution across India using real satellite data</div>
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="num">2</div>
+        <div class="lbl">Years Analyzed</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">24</div>
+        <div class="lbl">Monthly Data Points</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">4</div>
+        <div class="lbl">Graphs Generated</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">NO₂</div>
+        <div class="lbl">Pollutant Studied</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">S5P</div>
+        <div class="lbl">Satellite Used</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">GEE</div>
+        <div class="lbl">Processing Platform</div>
+      </div>
+    </div>
+
+    <div class="about-grid">
+      <div class="info-card">
+        <h3>🔬 What is this project?</h3>
+        This project analyzes the spatial and temporal distribution of
+        Nitrogen Dioxide (NO₂) over India using satellite data from the
+        Sentinel-5P satellite. All processing is done on Google Earth Engine,
+        a free cloud platform by Google that stores petabytes of satellite imagery.
+        The project compares NO₂ levels for 2023 and 2024 to find pollution trends.
+      </div>
+      <div class="info-card">
+        <h3>⚠️ Why is NO₂ important?</h3>
+        Nitrogen Dioxide is produced by vehicle exhaust, power plants, and
+        industrial activities. It causes respiratory diseases, cardiovascular
+        problems, and contributes to smog and acid rain. Monitoring NO₂ from
+        space helps scientists track pollution hotspots and evaluate the impact
+        of government environmental policies across large regions efficiently.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOOLS -->
+<div class="section bg-alt" id="tools">
+  <div class="wrapper">
+    <div class="divider"></div>
+    <div class="section-title">Tools & <span>Technologies</span></div>
+    <div class="section-sub">Everything used to build this project</div>
+    <div class="tools-grid">
+      <div class="tool-card">
+        <div class="tool-icon">🌍</div>
+        <h4>Google Earth Engine</h4>
+        <p>Cloud satellite data processing</p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">🛰️</div>
+        <h4>Sentinel-5P</h4>
+        <p>ESA satellite with TROPOMI sensor</p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">🐍</div>
+        <h4>Python 3.x</h4>
+        <p>Main programming language</p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">🗺️</div>
+        <h4>Folium</h4>
+        <p>Interactive map visualization</p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">📊</div>
+        <h4>Matplotlib</h4>
+        <p>Graph and chart generation</p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">📄</div>
+        <h4>ReportLab</h4>
+        <p>PDF report generation</p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">💻</div>
+        <h4>PyCharm IDE</h4>
+        <p>Development environment</p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">🌐</div>
+        <h4>HTML / CSS</h4>
+        <p>Project website</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- METHODOLOGY -->
+<div class="section" id="methodology">
+  <div class="wrapper">
+    <div class="divider"></div>
+    <div class="section-title">Project <span>Methodology</span></div>
+    <div class="section-sub">Step by step approach followed in this project</div>
+    <div class="method-steps">
+      <div class="method-step">
+        <div class="step-num">1</div>
+        <h4>Account Setup</h4>
+        <p>Created GEE account and authenticated Python API in PyCharm</p>
+      </div>
+      <div class="method-step">
+        <div class="step-num">2</div>
+        <h4>Data Access</h4>
+        <p>Accessed Sentinel-5P NO₂ dataset from GEE data catalog</p>
+      </div>
+      <div class="method-step">
+        <div class="step-num">3</div>
+        <h4>Filtering</h4>
+        <p>Filtered data by date range and India geographic boundary</p>
+      </div>
+      <div class="method-step">
+        <div class="step-num">4</div>
+        <h4>Processing</h4>
+        <p>Computed monthly and annual NO₂ mean values using GEE</p>
+      </div>
+      <div class="method-step">
+        <div class="step-num">5</div>
+        <h4>Visualization</h4>
+        <p>Created interactive maps with Folium and charts with Matplotlib</p>
+      </div>
+      <div class="method-step">
+        <div class="step-num">6</div>
+        <h4>Analysis</h4>
+        <p>Compared 2023 vs 2024 monthly and seasonal NO₂ trends</p>
+      </div>
+      <div class="method-step">
+        <div class="step-num">7</div>
+        <h4>Reporting</h4>
+        <p>Generated PDF report and this project website</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAP -->
+<div class="section bg-alt" id="map">
+  <div class="wrapper">
+    <div class="divider"></div>
+    <div class="section-title">Interactive <span>NO₂ Map</span></div>
+    <div class="section-sub">Toggle between 2023 and 2024 using the layer control on the map</div>
+    <div class="map-box">
+      <div class="map-header">
+        <h3>🗺️ NO₂ Pollution Map — India (2023 vs 2024)</h3>
+        <span class="live-badge">Live Satellite Data</span>
+      </div>
+      <iframe src="no2_2023_2024.html"></iframe>
+      <div class="map-footer">
+        <span class="lbl">Color Scale:</span>
+        <div class="legend-bar">
+          <div class="legend-item">
+            <div class="legend-dot" style="background:#0000FF"></div> Very Low
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background:#00FF00"></div> Low
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background:#FFFF00"></div> Moderate
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background:#FF8000"></div> High
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background:#FF0000"></div> Very High
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GRAPHS -->
+<div class="section" id="graphs">
+  <div class="wrapper">
+    <div class="divider"></div>
+    <div class="section-title">Analysis <span>Graphs</span></div>
+    <div class="section-sub">Statistical analysis of NO₂ levels across months and seasons</div>
+    <div class="graphs-grid">
+      <div class="graph-card">
+        <img src="no2_line_chart.png" alt="Line Chart"/>
+        <div class="graph-caption">Figure 1 — Monthly NO₂ Trend Comparison (2023 vs 2024)</div>
+      </div>
+      <div class="graph-card">
+        <img src="no2_bar_chart.png" alt="Bar Chart"/>
+        <div class="graph-caption">Figure 2 — Monthly NO₂ Bar Chart Comparison</div>
+      </div>
+      <div class="graph-card">
+        <img src="no2_seasonal_chart.png" alt="Seasonal Chart"/>
+        <div class="graph-caption">Figure 3 — Seasonal NO₂ Average Analysis</div>
+      </div>
+      <div class="graph-card">
+        <img src="no2_annual_chart.png" alt="Annual Chart"/>
+        <div class="graph-caption">Figure 4 — Annual Average NO₂ Comparison</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FINDINGS -->
+<div class="section bg-alt" id="findings">
+  <div class="wrapper">
+    <div class="divider"></div>
+    <div class="section-title">Key <span>Findings</span></div>
+    <div class="section-sub">Important observations from the satellite data analysis</div>
+    <div class="findings-grid">
+      <div class="finding-card">
+        <div class="finding-icon">🔴</div>
+        <div>
+          <h4>High Pollution Hotspots</h4>
+          <p>Indo-Gangetic Plain covering Uttar Pradesh, Bihar, and Delhi
+             shows highest NO₂ due to dense traffic and industrial activity.</p>
+        </div>
+      </div>
+      <div class="finding-card">
+        <div class="finding-icon">❄️</div>
+        <div>
+          <h4>Winter Peak Pollution</h4>
+          <p>November to February shows highest NO₂ levels due to temperature
+             inversions that trap pollutants near the ground surface.</p>
+        </div>
+      </div>
+      <div class="finding-card">
+        <div class="finding-icon">🌧️</div>
+        <div>
+          <h4>Monsoon Cleans the Air</h4>
+          <p>June to August shows lowest NO₂ because rainfall washes
+             pollutants from the atmosphere naturally.</p>
+        </div>
+      </div>
+      <div class="finding-card">
+        <div class="finding-icon">🏭</div>
+        <div>
+          <h4>Industrial Zones Visible</h4>
+          <p>Jharkhand, West Bengal, and coastal Maharashtra show clear
+             industrial pollution hotspots on the satellite map.</p>
+        </div>
+      </div>
+      <div class="finding-card">
+        <div class="finding-icon">📈</div>
+        <div>
+          <h4>Year-on-Year Trend</h4>
+          <p>Comparison between 2023 and 2024 reveals annual pollution
+             trends and impact of environmental policy changes.</p>
+        </div>
+      </div>
+      <div class="finding-card">
+        <div class="finding-icon">🌿</div>
+        <div>
+          <h4>Clean Southern India</h4>
+          <p>Southern states and northeastern India show significantly
+             lower NO₂ due to less industry and better green cover.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VIVA -->
+<div class="section" id="viva">
+  <div class="wrapper">
+    <div class="divider"></div>
+    <div class="section-title">Viva <span>Questions & Answers</span></div>
+    <div class="section-sub">Click on any question to see the answer</div>
+    <div class="viva-list">
+
+      <div class="viva-card">
+        <div class="viva-q" onclick="toggleViva(this)">
+          Q1. What is Google Earth Engine? <span class="arrow">▼</span>
+        </div>
+        <div class="viva-a">
+          Google Earth Engine is a cloud-based platform by Google that provides free access
+          to petabytes of satellite imagery and geospatial datasets. It allows scientists
+          to perform large-scale environmental analysis without needing powerful local hardware.
+        </div>
+      </div>
+
+      <div class="viva-card">
+        <div class="viva-q" onclick="toggleViva(this)">
+          Q2. What is Sentinel-5P satellite? <span class="arrow">▼</span>
+        </div>
+        <div class="viva-a">
+          Sentinel-5P is a satellite launched by ESA in 2017 as part of the Copernicus programme.
+          It carries the TROPOMI instrument which measures atmospheric gases including NO₂, SO₂,
+          CO, and ozone with spatial resolution of 3.5 x 5.5 km.
+        </div>
+      </div>
+
+      <div class="viva-card">
+        <div class="viva-q" onclick="toggleViva(this)">
+          Q3. What is NO₂ and why is it dangerous? <span class="arrow">▼</span>
+        </div>
+        <div class="viva-a">
+          Nitrogen Dioxide (NO₂) is produced by vehicle exhaust, power plants, and industries.
+          It causes respiratory diseases, contributes to smog and acid rain, and is a major
+          indicator of air pollution levels in urban and industrial areas.
+        </div>
+      </div>
+
+      <div class="viva-card">
+        <div class="viva-q" onclick="toggleViva(this)">
+          Q4. What dataset did you use? <span class="arrow">▼</span>
+        </div>
+        <div class="viva-a">
+          We used COPERNICUS/S5P/OFFL/L3_NO2 from Google Earth Engine. OFFL means offline
+          processed high-quality data. It measures tropospheric NO₂ column number density
+          in moles per square meter (mol/m²).
+        </div>
+      </div>
+
+      <div class="viva-card">
+        <div class="viva-q" onclick="toggleViva(this)">
+          Q5. Why are NO₂ levels higher in winter? <span class="arrow">▼</span>
+        </div>
+        <div class="viva-a">
+          In winter, cold temperatures cause temperature inversions where warm air traps cold
+          air near the ground. This prevents pollutants from dispersing upward, causing NO₂
+          to accumulate near the surface in higher concentrations.
+        </div>
+      </div>
+
+      <div class="viva-card">
+        <div class="viva-q" onclick="toggleViva(this)">
+          Q6. What is reduceRegion in your code? <span class="arrow">▼</span>
+        </div>
+        <div class="viva-a">
+          reduceRegion is a GEE function that applies a mathematical operation like mean or
+          median over all pixels within a geographic region. We used it to calculate the
+          average NO₂ value across entire India for each month.
+        </div>
+      </div>
+
+      <div class="viva-card">
+        <div class="viva-q" onclick="toggleViva(this)">
+          Q7. Which areas show highest NO₂ in India? <span class="arrow">▼</span>
+        </div>
+        <div class="viva-a">
+          The highest NO₂ is in the Indo-Gangetic Plain covering Uttar Pradesh, Bihar, and
+          Delhi. Industrial areas of Jharkhand and West Bengal also show high pollution
+          due to heavy industrial and thermal power plant activity.
+        </div>
+      </div>
+
+      <div class="viva-card">
+        <div class="viva-q" onclick="toggleViva(this)">
+          Q8. What is the significance of time-based comparison? <span class="arrow">▼</span>
+        </div>
+        <div class="viva-a">
+          Time-based comparison helps identify whether pollution is increasing or decreasing
+          year by year. It helps evaluate the impact of government environmental policies
+          and provides data for future pollution forecasting and urban planning.
+        </div>
+      </div>
+
+      <div class="viva-card">
+        <div class="viva-q" onclick="toggleViva(this)">
+          Q9. Why did you use Python instead of JavaScript? <span class="arrow">▼</span>
+        </div>
+        <div class="viva-a">
+          Python provides better libraries for data analysis, graph generation, and report
+          creation. Libraries like Matplotlib, Folium, and ReportLab make it easier to
+          create professional visualizations and reports compared to JavaScript-based GEE editor.
+        </div>
+      </div>
+
+      <div class="viva-card">
+        <div class="viva-q" onclick="toggleViva(this)">
+          Q10. What is TROPOMI? <span class="arrow">▼</span>
+        </div>
+        <div class="viva-a">
+          TROPOMI stands for TROPOspheric Monitoring Instrument. It is the main sensor
+          onboard the Sentinel-5P satellite. It measures multiple atmospheric pollutants
+          including NO₂, SO₂, CO, CH₄, and ozone at very high spatial resolution.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <h3>🛰️ Air Pollution Analysis Using NO₂ Satellite Data</h3>
+  <div class="footer-pills">
+    <span class="footer-pill">Sentinel-5P</span>
+    <span class="footer-pill">Google Earth Engine</span>
+    <span class="footer-pill">Python</span>
+    <span class="footer-pill">Folium</span>
+    <span class="footer-pill">Matplotlib</span>
+    <span class="footer-pill">India 2023-2024</span>
+  </div>
+  <p>Dataset: COPERNICUS/S5P/OFFL/L3_NO2</p>
+  <p>Academic Research Project | 2024-25</p>
+</footer>
+
+<!-- SCROLL TOP -->
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+  // Viva toggle
+  function toggleViva(el) {
+    el.classList.toggle('open');
+    const ans = el.nextElementSibling;
+    ans.classList.toggle('open');
+  }
+
+  // Scroll top button
+  window.addEventListener('scroll', function() {
+    const btn = document.getElementById('scrollTop');
+    btn.style.display = window.scrollY > 300 ? 'flex' : 'none';
+    btn.style.alignItems = 'center';
+    btn.style.justifyContent = 'center';
+  });
+
+  // Smooth nav highlight
+  const sections = document.querySelectorAll('div[id], section[id]');
+  const navLinks = document.querySelectorAll('nav a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#'+current
+        ? '#00c6ff' : 'rgba(255,255,255,0.8)';
+    });
+  });
+</script>
+
 </body>
 </html>
