@@ -505,7 +505,6 @@
 </head>
 <body>
 
-<!-- HERO -->
 <div class="hero">
   <div class="hero-badge">🛰️ Satellite Remote Sensing Project</div>
   <h1>Air Pollution Analysis<br/><span>Using NO₂ Satellite Data</span></h1>
@@ -520,7 +519,6 @@
   </div>
 </div>
 
-<!-- NAV -->
 <nav>
   <a href="#overview">Overview</a>
   <a href="#tools">Tools</a>
@@ -531,12 +529,11 @@
   <a href="#viva">Viva Q&A</a>
 </nav>
 
-<!-- OVERVIEW -->
 <div class="section" id="overview">
   <div class="wrapper">
     <div class="divider"></div>
     <div class="section-title">Project <span>Overview</span></div>
-    <div class="section-sub">Understanding NO₂ pollution across India using real satellite data</div>
+    <div class="section-sub">Understanding NO₂ pollution across Himachal Pradesh using real satellite data</div>
 
     <div class="stats-row">
       <div class="stat-card">
@@ -548,7 +545,7 @@
         <div class="lbl">Monthly Data Points</div>
       </div>
       <div class="stat-card">
-        <div class="num">4</div>
+        <div class="num">5</div>
         <div class="lbl">Graphs Generated</div>
       </div>
       <div class="stat-card">
@@ -569,7 +566,7 @@
       <div class="info-card">
         <h3>🔬 What is this project?</h3>
         This project analyzes the spatial and temporal distribution of
-        Nitrogen Dioxide (NO₂) over India using satellite data from the
+        Nitrogen Dioxide (NO₂) over Himachal Pradesh using satellite data from the
         Sentinel-5P satellite. All processing is done on Google Earth Engine,
         a free cloud platform by Google that stores petabytes of satellite imagery.
         The project compares NO₂ levels for 2023 and 2024 to find pollution trends.
@@ -580,13 +577,12 @@
         industrial activities. It causes respiratory diseases, cardiovascular
         problems, and contributes to smog and acid rain. Monitoring NO₂ from
         space helps scientists track pollution hotspots and evaluate the impact
-        of government environmental policies across large regions efficiently.
+        of government environmental policies across mountainous regions efficiently.
       </div>
     </div>
   </div>
 </div>
 
-<!-- TOOLS -->
 <div class="section bg-alt" id="tools">
   <div class="wrapper">
     <div class="divider"></div>
@@ -637,7 +633,6 @@
   </div>
 </div>
 
-<!-- METHODOLOGY -->
 <div class="section" id="methodology">
   <div class="wrapper">
     <div class="divider"></div>
@@ -657,7 +652,7 @@
       <div class="method-step">
         <div class="step-num">3</div>
         <h4>Filtering</h4>
-        <p>Filtered data by date range and India geographic boundary</p>
+        <p>Filtered data by date range and Himachal Pradesh geographic boundary</p>
       </div>
       <div class="method-step">
         <div class="step-num">4</div>
@@ -683,7 +678,6 @@
   </div>
 </div>
 
-<!-- MAP -->
 <div class="section bg-alt" id="map">
   <div class="wrapper">
     <div class="divider"></div>
@@ -719,12 +713,11 @@
   </div>
 </div>
 
-<!-- GRAPHS -->
 <div class="section" id="graphs">
   <div class="wrapper">
     <div class="divider"></div>
     <div class="section-title">Analysis <span>Graphs</span></div>
-    <div class="section-sub">Statistical analysis of NO₂ levels across months and seasons</div>
+    <div class="section-sub">Statistical analysis of NO₂ levels across months, seasons, and districts</div>
     <div class="graphs-grid">
       <div class="graph-card">
         <img src="no2_line_chart.png" alt="Line Chart"/>
@@ -742,11 +735,14 @@
         <img src="no2_annual_chart.png" alt="Annual Chart"/>
         <div class="graph-caption">Figure 4 — Annual Average NO₂ Comparison</div>
       </div>
+      <div class="graph-card">
+        <img src="no2_district_chart.png" alt="District Chart"/>
+        <div class="graph-caption">Figure 5 — District-wise NO₂ Levels in Himachal Pradesh (2024)</div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- FINDINGS -->
 <div class="section bg-alt" id="findings">
   <div class="wrapper">
     <div class="divider"></div>
@@ -756,56 +752,55 @@
       <div class="finding-card">
         <div class="finding-icon">🔴</div>
         <div>
-          <h4>High Pollution Hotspots</h4>
-          <p>Indo-Gangetic Plain covering Uttar Pradesh, Bihar, and Delhi
-             shows highest NO₂ due to dense traffic and industrial activity.</p>
+          <h4>Border Industrial Hotspots</h4>
+          <p>Districts sharing borders with plains, particularly Solan (Baddi) and Una,
+             show the highest NO₂ due to dense industrial activity and cross-border drift.</p>
         </div>
       </div>
       <div class="finding-card">
         <div class="finding-icon">❄️</div>
         <div>
-          <h4>Winter Peak Pollution</h4>
-          <p>November to February shows highest NO₂ levels due to temperature
-             inversions that trap pollutants near the ground surface.</p>
+          <h4>Winter Valley Accumulation</h4>
+          <p>November to February shows higher NO₂ levels as winter temperature
+             inversions trap pollutants near the surface in mountain valleys.</p>
         </div>
       </div>
       <div class="finding-card">
         <div class="finding-icon">🌧️</div>
         <div>
           <h4>Monsoon Cleans the Air</h4>
-          <p>June to August shows lowest NO₂ because rainfall washes
-             pollutants from the atmosphere naturally.</p>
+          <p>June to August shows lowest NO₂ across the state because heavy monsoon
+             rainfall naturally washes pollutants from the atmosphere.</p>
         </div>
       </div>
       <div class="finding-card">
-        <div class="finding-icon">🏭</div>
+        <div class="finding-icon">🏔️</div>
         <div>
-          <h4>Industrial Zones Visible</h4>
-          <p>Jharkhand, West Bengal, and coastal Maharashtra show clear
-             industrial pollution hotspots on the satellite map.</p>
+          <h4>Pristine High Altitudes</h4>
+          <p>High-altitude districts like Lahaul & Spiti and Kinnaur maintain excellent,
+             near-zero NO₂ levels year-round due to lack of heavy industry and traffic.</p>
         </div>
       </div>
       <div class="finding-card">
         <div class="finding-icon">📈</div>
         <div>
           <h4>Year-on-Year Trend</h4>
-          <p>Comparison between 2023 and 2024 reveals annual pollution
-             trends and impact of environmental policy changes.</p>
+          <p>Comparison between 2023 and 2024 reveals shifts in pollution
+             patterns, helping evaluate the impact of local environmental policies.</p>
         </div>
       </div>
       <div class="finding-card">
-        <div class="finding-icon">🌿</div>
+        <div class="finding-icon">🚗</div>
         <div>
-          <h4>Clean Southern India</h4>
-          <p>Southern states and northeastern India show significantly
-             lower NO₂ due to less industry and better green cover.</p>
+          <h4>Tourism Traffic Impact</h4>
+          <p>Tourist hubs like Shimla and Kullu (Manali) show localized spikes
+             in NO₂ during peak summer and winter tourism seasons.</p>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- VIVA -->
 <div class="section" id="viva">
   <div class="wrapper">
     <div class="divider"></div>
@@ -852,8 +847,7 @@
         </div>
         <div class="viva-a">
           We used COPERNICUS/S5P/OFFL/L3_NO2 from Google Earth Engine. OFFL means offline
-          processed high-quality data. It measures tropospheric NO₂ column number density
-          in moles per square meter (mol/m²).
+          processed high-quality data. It measures tropospheric NO₂ column number density.
         </div>
       </div>
 
@@ -864,7 +858,7 @@
         <div class="viva-a">
           In winter, cold temperatures cause temperature inversions where warm air traps cold
           air near the ground. This prevents pollutants from dispersing upward, causing NO₂
-          to accumulate near the surface in higher concentrations.
+          to accumulate near the surface, especially in Himalayan valleys.
         </div>
       </div>
 
@@ -875,18 +869,16 @@
         <div class="viva-a">
           reduceRegion is a GEE function that applies a mathematical operation like mean or
           median over all pixels within a geographic region. We used it to calculate the
-          average NO₂ value across entire India for each month.
+          average NO₂ value across Himachal Pradesh for each month.
         </div>
       </div>
 
       <div class="viva-card">
         <div class="viva-q" onclick="toggleViva(this)">
-          Q7. Which areas show highest NO₂ in India? <span class="arrow">▼</span>
+          Q7. Which areas show highest NO₂ in Himachal Pradesh? <span class="arrow">▼</span>
         </div>
         <div class="viva-a">
-          The highest NO₂ is in the Indo-Gangetic Plain covering Uttar Pradesh, Bihar, and
-          Delhi. Industrial areas of Jharkhand and West Bengal also show high pollution
-          due to heavy industrial and thermal power plant activity.
+          The highest NO₂ is generally observed in border districts like Solan (specifically the Baddi-Barotiwala-Nalagarh industrial belt) and Una. This is due to local manufacturing industries and pollution drifting up from the neighboring plains of Punjab and Haryana.
         </div>
       </div>
 
@@ -927,7 +919,6 @@
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <h3>🛰️ Air Pollution Analysis Using NO₂ Satellite Data</h3>
   <div class="footer-pills">
@@ -936,13 +927,12 @@
     <span class="footer-pill">Python</span>
     <span class="footer-pill">Folium</span>
     <span class="footer-pill">Matplotlib</span>
-    <span class="footer-pill">India 2023-2024</span>
+    <span class="footer-pill">Himachal Pradesh 2023-2024</span>
   </div>
   <p>Dataset: COPERNICUS/S5P/OFFL/L3_NO2</p>
   <p>Academic Research Project | 2024-25</p>
 </footer>
 
-<!-- SCROLL TOP -->
 <button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <script>
