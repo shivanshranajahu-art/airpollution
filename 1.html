@@ -49,12 +49,12 @@
                 L_DISABLE_3D = false;
             </script>
 
-        
+
     <script src="https://cdn.jsdelivr.net/gh/digidem/leaflet-side-by-side@2.0.0/leaflet-side-by-side.min.js"></script>
 </head>
 <body>
-    
-    
+
+
 <style>
     /* Dashboard Base - CHANGED TO WHITE */
     .ui-box { position: fixed; z-index: 9999; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #111; background: rgba(255, 255, 255, 0.95); border: 1px solid #ccc; pointer-events: auto; }
@@ -90,13 +90,13 @@
         <span>PRISTINE</span><span>MODERATE</span><span>SEVERE</span>
     </div>
 </div>
-    
+
             <div class="folium-map" id="map_97609f45b09ac5a06385dcb07508774a" ></div>
-        
+
 </body>
 <script>
-    
-    
+
+
             var map_97609f45b09ac5a06385dcb07508774a = L.map(
                 "map_97609f45b09ac5a06385dcb07508774a",
                 {
@@ -111,10 +111,10 @@
                 }
             );
 
-            
 
-        
-    
+
+
+
             var tile_layer_8256df9babd04a2081760ba6943ffe15 = L.tileLayer(
                 "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
                 {
@@ -130,11 +130,11 @@
 }
 
             );
-        
-    
+
+
             tile_layer_8256df9babd04a2081760ba6943ffe15.addTo(map_97609f45b09ac5a06385dcb07508774a);
-        
-    
+
+
             var tile_layer_23141b59dad840146af57d9f11845c1c = L.tileLayer(
                 "https://earthengine.googleapis.com/v1/projects/lateral-booking-484916-r8/maps/8a120fc5918bee529b7f96b1c5d95538-bcdfae956b6f59c396fa0e92492f021a/tiles/{z}/{x}/{y}",
                 {
@@ -150,11 +150,11 @@
 }
 
             );
-        
-    
+
+
             tile_layer_23141b59dad840146af57d9f11845c1c.addTo(map_97609f45b09ac5a06385dcb07508774a);
-        
-    
+
+
             var tile_layer_3ddc5fe2bec44d4ab9c53d4d0a772fa9 = L.tileLayer(
                 "https://earthengine.googleapis.com/v1/projects/lateral-booking-484916-r8/maps/3f6f73157904a44c1f799940ab0bf094-dc7c484b722ff6cb15044f8d1cbe07ec/tiles/{z}/{x}/{y}",
                 {
@@ -170,16 +170,16 @@
 }
 
             );
-        
-    
+
+
             tile_layer_3ddc5fe2bec44d4ab9c53d4d0a772fa9.addTo(map_97609f45b09ac5a06385dcb07508774a);
-        
-    
+
+
             var side_by_side_layers_b51c2e6bf5e1836dead534c2c4f42618 = L.control.sideBySide(
                 tile_layer_23141b59dad840146af57d9f11845c1c, tile_layer_3ddc5fe2bec44d4ab9c53d4d0a772fa9
             ).addTo(map_97609f45b09ac5a06385dcb07508774a);
-        
-    
+
+
             var tile_layer_f2053066da0a5fe4d96cc3a4a2da345f = L.tileLayer(
                 "https://earthengine.googleapis.com/v1/projects/lateral-booking-484916-r8/maps/69be40c8a1a91787cbb647188f244332-3a82bd686b5972dc8e3412068ce6351e/tiles/{z}/{x}/{y}",
                 {
@@ -195,119 +195,119 @@
 }
 
             );
-        
-    
+
+
             tile_layer_f2053066da0a5fe4d96cc3a4a2da345f.addTo(map_97609f45b09ac5a06385dcb07508774a);
-        
-    
+
+
             var circle_marker_73d9fcb4729a8a17ee62cd863408eba9 = L.circleMarker(
                 [30.95, 76.79],
                 {"bubblingMouseEvents": true, "color": "#000000", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#000000", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
             ).addTo(map_97609f45b09ac5a06385dcb07508774a);
-        
-    
+
+
         var popup_eeb35f2390faa49de93916d424cab159 = L.popup({
   "maxWidth": "100%",
 });
 
-        
-            
+
+
                 var html_e4ef6ab32e0fec9b4e297725d742536f = $(`<div id="html_e4ef6ab32e0fec9b4e297725d742536f" style="width: 100.0%; height: 100.0%;"><div style='font-family:sans-serif; color:black;'><b>Baddi</b><br><small>Industrial Zone</small></div></div>`)[0];
                 popup_eeb35f2390faa49de93916d424cab159.setContent(html_e4ef6ab32e0fec9b4e297725d742536f);
-            
-        
+
+
 
         circle_marker_73d9fcb4729a8a17ee62cd863408eba9.bindPopup(popup_eeb35f2390faa49de93916d424cab159)
         ;
 
-        
-    
-    
+
+
+
             var circle_marker_c47c8e980a39937bac92453a6de857ff = L.circleMarker(
                 [31.1, 77.17],
                 {"bubblingMouseEvents": true, "color": "#000000", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#000000", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
             ).addTo(map_97609f45b09ac5a06385dcb07508774a);
-        
-    
+
+
         var popup_0bb7c26892918059fb25f1569e78be94 = L.popup({
   "maxWidth": "100%",
 });
 
-        
-            
+
+
                 var html_0a1a3f7951a46aa4066caf4a9e302372 = $(`<div id="html_0a1a3f7951a46aa4066caf4a9e302372" style="width: 100.0%; height: 100.0%;"><div style='font-family:sans-serif; color:black;'><b>Shimla</b><br><small>Capital</small></div></div>`)[0];
                 popup_0bb7c26892918059fb25f1569e78be94.setContent(html_0a1a3f7951a46aa4066caf4a9e302372);
-            
-        
+
+
 
         circle_marker_c47c8e980a39937bac92453a6de857ff.bindPopup(popup_0bb7c26892918059fb25f1569e78be94)
         ;
 
-        
-    
-    
+
+
+
             var circle_marker_f27919a9c1bc9904c429fb2397f61629 = L.circleMarker(
                 [32.23, 77.18],
                 {"bubblingMouseEvents": true, "color": "#000000", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#000000", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
             ).addTo(map_97609f45b09ac5a06385dcb07508774a);
-        
-    
+
+
         var popup_b83b7a62204fe2b15e8196ba9b48083d = L.popup({
   "maxWidth": "100%",
 });
 
-        
-            
+
+
                 var html_c046f1f6154a5b70aa9c9c66a369b488 = $(`<div id="html_c046f1f6154a5b70aa9c9c66a369b488" style="width: 100.0%; height: 100.0%;"><div style='font-family:sans-serif; color:black;'><b>Manali</b><br><small>Tourism Hub</small></div></div>`)[0];
                 popup_b83b7a62204fe2b15e8196ba9b48083d.setContent(html_c046f1f6154a5b70aa9c9c66a369b488);
-            
-        
+
+
 
         circle_marker_f27919a9c1bc9904c429fb2397f61629.bindPopup(popup_b83b7a62204fe2b15e8196ba9b48083d)
         ;
 
-        
-    
-    
+
+
+
             var circle_marker_58d3c244dd0f97305172c658cbba7265 = L.circleMarker(
                 [31.46, 76.26],
                 {"bubblingMouseEvents": true, "color": "#000000", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#000000", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
             ).addTo(map_97609f45b09ac5a06385dcb07508774a);
-        
-    
+
+
         var popup_5aaf4ca6596e7b1f4b4e9b07365e4467 = L.popup({
   "maxWidth": "100%",
 });
 
-        
-            
+
+
                 var html_7d966255bfb87330b63f54b7333162f8 = $(`<div id="html_7d966255bfb87330b63f54b7333162f8" style="width: 100.0%; height: 100.0%;"><div style='font-family:sans-serif; color:black;'><b>Una</b><br><small>Border Region</small></div></div>`)[0];
                 popup_5aaf4ca6596e7b1f4b4e9b07365e4467.setContent(html_7d966255bfb87330b63f54b7333162f8);
-            
-        
+
+
 
         circle_marker_58d3c244dd0f97305172c658cbba7265.bindPopup(popup_5aaf4ca6596e7b1f4b4e9b07365e4467)
         ;
 
-        
-    
-    
+
+
+
             var circle_marker_e32a182be646ff66f0ed6ae914be6900 = L.circleMarker(
                 [32.21, 76.32],
                 {"bubblingMouseEvents": true, "color": "#000000", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#000000", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
             ).addTo(map_97609f45b09ac5a06385dcb07508774a);
-        
-    
+
+
         var popup_1fd12c6b86e80a8c7d975d94c829e6fb = L.popup({
   "maxWidth": "100%",
 });
 
-        
-            
+
+
                 var html_e641f214edfc31a4e50b3d71398ff07e = $(`<div id="html_e641f214edfc31a4e50b3d71398ff07e" style="width: 100.0%; height: 100.0%;"><div style='font-family:sans-serif; color:black;'><b>Dharamshala</b><br><small>Urban Center</small></div></div>`)[0];
                 popup_1fd12c6b86e80a8c7d975d94c829e6fb.setContent(html_e641f214edfc31a4e50b3d71398ff07e);
-            
-        
+
+
 
         circle_marker_e32a182be646ff66f0ed6ae914be6900.bindPopup(popup_1fd12c6b86e80a8c7d975d94c829e6fb)
         ;
