@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_dda2766205366893609350deaf0f313a {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdn.jsdelivr.net/gh/digidem/leaflet-side-by-side@2.0.0/leaflet-side-by-side.min.js"></script>
+</head>
+<body>
+    
+    
+<style>
+    /* Dashboard Base */
+    .ui-box { position: fixed; z-index: 9999; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: white; background: rgba(10,12,16,0.95); border: 1px solid #333; pointer-events: auto; }
+
+    /* Top Header */
+    .header { top: 20px; left: 50%; transform: translateX(-50%); padding: 15px 35px; border-radius: 30px; text-align: center; box-shadow: 0 8px 32px rgba(0,0,0,0.8); }
+
+    /* Bottom Legend */
+    .legend { bottom: 30px; right: 20px; padding: 18px; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.8); }
+    .grad-bar { height: 12px; width: 250px; background: linear-gradient(to right, #0a2e15, #228b22, #adff2f, #ffff00, #ff9900, #ff0000); border-radius: 6px; margin: 12px 0; border: 1px solid #555; }
+
+    /* GIANT WATERMARK LABELS */
+    .watermark { position: fixed; top: 50%; transform: translateY(-50%); z-index: 800; font-family: 'Arial Black', sans-serif; font-size: 12vw; font-weight: 900; color: rgba(255, 255, 255, 0.05); pointer-events: none; user-select: none; letter-spacing: -2px; }
+    .wm-left { left: 2%; } .wm-right { right: 2%; }
+
+    /* Typography */
+    .title-text { margin:0; font-size: 18px; letter-spacing: 1px; font-weight: 600; text-transform: uppercase; }
+    .slider-hint { margin-top: 6px; font-size: 13px; color: #00d9ff; font-weight: bold; letter-spacing: 0.5px; }
+</style>
+
+<div class="watermark wm-left">2023</div>
+<div class="watermark wm-right">2024</div>
+
+<div class="ui-box header">
+    <h3 class="title-text">Himachal Pradesh Air Quality Intelligence</h3>
+    <div class="slider-hint">◄ 2023 &nbsp; &nbsp; [ DRAG CENTER SLIDER ] &nbsp; &nbsp; 2024 ►</div>
+</div>
+
+<div class="ui-box legend">
+    <b style="font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #aaa;">NO₂ Pollution Intensity</b><br>
+    <div class="grad-bar"></div>
+    <div style="display: flex; justify-content: space-between; font-size: 10px; font-weight: bold; color:#ddd;">
+        <span>PRISTINE</span><span>MODERATE</span><span>SEVERE</span>
+    </div>
+</div>
+    
+            <div class="folium-map" id="map_dda2766205366893609350deaf0f313a" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_dda2766205366893609350deaf0f313a = L.map(
+                "map_dda2766205366893609350deaf0f313a",
+                {
+                    center: [31.8, 77.2],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 8,
+  "zoomControl": true,
+  "preferCanvas": true,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_02f7c5b423eb6b792637022b00746466 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_02f7c5b423eb6b792637022b00746466.addTo(map_dda2766205366893609350deaf0f313a);
+        
+    
+            var tile_layer_0d7f0a4aafbb935f2c5de492a49dd612 = L.tileLayer(
+                "https://earthengine.googleapis.com/v1/projects/lateral-booking-484916-r8/maps/8a120fc5918bee529b7f96b1c5d95538-bfe7df802841d40d94bd9b3ead498a94/tiles/{z}/{x}/{y}",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "S5P",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 0.85,
+}
+
+            );
+        
+    
+            tile_layer_0d7f0a4aafbb935f2c5de492a49dd612.addTo(map_dda2766205366893609350deaf0f313a);
+        
+    
+            var tile_layer_f42cc535a6eccd81f497d9423845bfba = L.tileLayer(
+                "https://earthengine.googleapis.com/v1/projects/lateral-booking-484916-r8/maps/3f6f73157904a44c1f799940ab0bf094-d2b65699518cee6c77994ac9982235f8/tiles/{z}/{x}/{y}",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "S5P",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 0.85,
+}
+
+            );
+        
+    
+            tile_layer_f42cc535a6eccd81f497d9423845bfba.addTo(map_dda2766205366893609350deaf0f313a);
+        
+    
+            var side_by_side_layers_b947448b4a2c6cf0de466805fbbef8f2 = L.control.sideBySide(
+                tile_layer_0d7f0a4aafbb935f2c5de492a49dd612, tile_layer_f42cc535a6eccd81f497d9423845bfba
+            ).addTo(map_dda2766205366893609350deaf0f313a);
+        
+    
+            var tile_layer_3cf6a7ce2f6632c479aed0b9da6e210c = L.tileLayer(
+                "https://earthengine.googleapis.com/v1/projects/lateral-booking-484916-r8/maps/ba8c53049dd0a6e223015591ba9e39b8-ca45f765a6fbd40c1acde65477f57132/tiles/{z}/{x}/{y}",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "FAO",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 0.6,
+}
+
+            );
+        
+    
+            tile_layer_3cf6a7ce2f6632c479aed0b9da6e210c.addTo(map_dda2766205366893609350deaf0f313a);
+        
+    
+            var circle_marker_28a3588a590ed8a89d621226d3aae9f4 = L.circleMarker(
+                [30.95, 76.79],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffffff", "fillOpacity": 1.0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_dda2766205366893609350deaf0f313a);
+        
+    
+        var popup_2bbc2ca9bba8f539d5012bb3ba51da14 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_18579bc1b873159854e5b35be5eea1da = $(`<div id="html_18579bc1b873159854e5b35be5eea1da" style="width: 100.0%; height: 100.0%;"><div style='font-family:sans-serif;'><b>Baddi</b><br><small>Industrial Zone</small></div></div>`)[0];
+                popup_2bbc2ca9bba8f539d5012bb3ba51da14.setContent(html_18579bc1b873159854e5b35be5eea1da);
+            
+        
+
+        circle_marker_28a3588a590ed8a89d621226d3aae9f4.bindPopup(popup_2bbc2ca9bba8f539d5012bb3ba51da14)
+        ;
+
+        
+    
+    
+            var circle_marker_6e49451f085a217e4352b317678e3561 = L.circleMarker(
+                [31.1, 77.17],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffffff", "fillOpacity": 1.0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_dda2766205366893609350deaf0f313a);
+        
+    
+        var popup_7f479d51c59d5c369463ee5f03658e92 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_25871bcfd471a5358f976a76dc7728e7 = $(`<div id="html_25871bcfd471a5358f976a76dc7728e7" style="width: 100.0%; height: 100.0%;"><div style='font-family:sans-serif;'><b>Shimla</b><br><small>Capital</small></div></div>`)[0];
+                popup_7f479d51c59d5c369463ee5f03658e92.setContent(html_25871bcfd471a5358f976a76dc7728e7);
+            
+        
+
+        circle_marker_6e49451f085a217e4352b317678e3561.bindPopup(popup_7f479d51c59d5c369463ee5f03658e92)
+        ;
+
+        
+    
+    
+            var circle_marker_59cff4bdaa9738068810f24b14979c9d = L.circleMarker(
+                [32.23, 77.18],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffffff", "fillOpacity": 1.0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_dda2766205366893609350deaf0f313a);
+        
+    
+        var popup_64ce5c86ea4656987c18b8538cd87749 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5bb8babeb852445c6653675fef0708c9 = $(`<div id="html_5bb8babeb852445c6653675fef0708c9" style="width: 100.0%; height: 100.0%;"><div style='font-family:sans-serif;'><b>Manali</b><br><small>Tourism Hub</small></div></div>`)[0];
+                popup_64ce5c86ea4656987c18b8538cd87749.setContent(html_5bb8babeb852445c6653675fef0708c9);
+            
+        
+
+        circle_marker_59cff4bdaa9738068810f24b14979c9d.bindPopup(popup_64ce5c86ea4656987c18b8538cd87749)
+        ;
+
+        
+    
+    
+            var circle_marker_b5d4b80018fbc176e5c552d869c897c2 = L.circleMarker(
+                [31.46, 76.26],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffffff", "fillOpacity": 1.0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_dda2766205366893609350deaf0f313a);
+        
+    
+        var popup_e4e0b29755b065c7e45ec009ea228f48 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_56609924a545ec66d5bdc4884e908e3d = $(`<div id="html_56609924a545ec66d5bdc4884e908e3d" style="width: 100.0%; height: 100.0%;"><div style='font-family:sans-serif;'><b>Una</b><br><small>Border Region</small></div></div>`)[0];
+                popup_e4e0b29755b065c7e45ec009ea228f48.setContent(html_56609924a545ec66d5bdc4884e908e3d);
+            
+        
+
+        circle_marker_b5d4b80018fbc176e5c552d869c897c2.bindPopup(popup_e4e0b29755b065c7e45ec009ea228f48)
+        ;
+
+        
+    
+    
+            var circle_marker_62c0e0a027aadba46e6ef681692e033a = L.circleMarker(
+                [32.21, 76.32],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffffff", "fillOpacity": 1.0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_dda2766205366893609350deaf0f313a);
+        
+    
+        var popup_43280c579910d6630d1c01841e818ca6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e6e27ba5340e475e15eb3263f42e96a9 = $(`<div id="html_e6e27ba5340e475e15eb3263f42e96a9" style="width: 100.0%; height: 100.0%;"><div style='font-family:sans-serif;'><b>Dharamshala</b><br><small>Urban Center</small></div></div>`)[0];
+                popup_43280c579910d6630d1c01841e818ca6.setContent(html_e6e27ba5340e475e15eb3263f42e96a9);
+            
+        
+
+        circle_marker_62c0e0a027aadba46e6ef681692e033a.bindPopup(popup_43280c579910d6630d1c01841e818ca6)
+        ;
+
+        
+    
+</script>
+</html>
