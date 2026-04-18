@@ -148,5 +148,4 @@ if diff_pct < 0:
     print(f"\n  Himachal Pradesh is {abs(diff_pct)}% CLEANER than national average!")
 else:
     print(f"\n  Himachal Pradesh is {diff_pct}% above national average.")
-
 print("\nAnalysis complete!")
