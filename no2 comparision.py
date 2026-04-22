@@ -18,18 +18,21 @@ outline_url = hp_outline.getMapId({'palette': ['#000000']})['tile_fetcher'].url_
 
 
 # ── 3. The "Full Fill" Data Function ──────────────────────────────────────────
+# ── 3. The "Full Fill" Data Function ──────────────────────────────────────────
 def get_full_fill_no2(year):
     collection = (ee.ImageCollection("COPERNICUS/S5P/OFFL/L3_NO2")
                   .select('tropospheric_NO2_column_number_density')
                   .filterDate(f'{year}-10-01', f'{year}-12-31')  # Winter Peak for Speed
                   .filterBounds(hp_boundary.geometry()))
 
-    # Process and scale the data
-    img = collection.mean().multiply(1000000).clip(hp_boundary)
+    # Process and scale the data (Do NOT clip here yet)
+    img = collection.mean().multiply(1000000)
 
-    # unmask(10) ensures every pixel inside HP gets filled
-    return img.unmask(10).clip(hp_boundary)
+    # CREATE THE FIX: Create a constant background image filled with your minimum value (10)
+    base_fill = ee.Image(10)
 
+    # Blend the NO2 data on top of the base fill, and THEN clip it to the HP boundary
+    return base_fill.blend(img).clip(hp_boundary)
 
 no2_2023 = get_full_fill_no2(2023)
 no2_2024 = get_full_fill_no2(2024)
