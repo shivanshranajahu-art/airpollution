@@ -21,16 +21,16 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "history": [
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;history&quot;: [
     {
-      "assignee": "shivanshranajahu-art"
+      &quot;assignee&quot;: &quot;shivanshranajahu-art&quot;
     }
   ],
-  "lastFilter": {
-    "assignee": "shivanshranajahu-art"
+  &quot;lastFilter&quot;: {
+    &quot;assignee&quot;: &quot;shivanshranajahu-art&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/shivanshranajahu-art/airpollution.git&quot;,
@@ -63,7 +63,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main"
+    "git-widget-placeholder": "#1 on master"
   }
 }]]></component>
   <component name="SharedIndexes">
